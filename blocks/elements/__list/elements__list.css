@@ -1,19 +1,21 @@
-.photos__list {
-  padding: 0;
+.elements__list {
   margin: 0;
+  padding: 50px 0 0 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px 18px;
+  grid-template-columns: repeat(auto-fit, 282px);
+  justify-content: center;
+  grid-gap: 20px 18px;
+  list-style: none;
 }
 
 @media screen and (max-width: 950px) {
-  .photos__list {
+  .elements__list {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 699px) {
-  .photos__list {
+  .elements__list {
     gap: 20px 0;
     grid-template-columns: repeat(1, 1fr);
   }

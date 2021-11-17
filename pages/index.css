@@ -21,5 +21,9 @@
 
 /* Подключаем стили секции photos */
 @import url(../blocks/photos/photos.css);
-@import url(../blocks/photos/__list/photo__list.css);
-@import url(../blocks/photos/__card/photos__card.css);
+@import url(../blocks/elements/__list/elements__list.css);
+@import url(../blocks/elements/__card/elements__card.css);
+@import url(../blocks/elements/__image/elements__image.css);
+@import url(../blocks/elements/__card-container/elements__card-container.css);
+@import url(../blocks/elements/__header/elements__header.css);
+@import url(../blocks/elements/__like-button/elements__like-button.css);

@@ -1,0 +1,7 @@
+.elements__card {
+  margin: 0 auto;
+  width: 282px;
+  background-color: #fff;
+  position: relative;
+  border-radius: 10px;
+}
