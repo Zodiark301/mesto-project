@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto</title>
+  <link rel="stylesheet" href="./pages/index.css">
+</head>
+
+<body class="page">
+
+  <header class="header">
+    <img class="logo" src="./images/header-logo.svg" alt="логотип проекта Mesto">
+  </header>
+
+  <main class="main">
+
+    <section class="profile">
+
+      <img src="/images/profile-image.jpg" class="profile__avatar" alt="Жак-Ив Кусто">
+
+      <div class="profile__info">
+
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <button class="profile__button profile__button_edit" type="button" title="Редактировать профиль"
+          aria-label="Редактировать профиль"></button>
+        <p class="profile__description">Исследователь океана</p>
+
+      </div>
+
+      <button class="profile__button profile__button_add" type="button" title="Добавить фотографию"
+        aria-label="Добавить фотографию"></button>
+
+    </section>
+
+    <section class="photos">
+      <ul class="photos__list">
+        <li class="photos__card"><button type="button" class="elements__delete" style="display: none;"></button> <img
+            class="elements__image"
+            src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg" alt="123">
+          <div class="elements__card-container">
+            <h2 class="elements__header">123</h2>
+            <div class="elements__like-container"><button class="elements__like elements__like_active" type="button"
+                title="Оценить фотографию" aria-label="Поставить лайк"></button> <span
+                class="elements__like-counter">2</span></div>
+          </div>
+        </li>
+        <li class="photos__card"><button type="button" class="elements__delete" style="display: none;"></button> <img
+            class="elements__image"
+            src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg" alt=" mm">
+          <div class="elements__card-container">
+            <h2 class="elements__header"> mm</h2>
+            <div class="elements__like-container"><button class="elements__like elements__like_active" type="button"
+                title="Оценить фотографию" aria-label="Поставить лайк"></button> <span
+                class="elements__like-counter">2</span></div>
+          </div>
+        </li>
+        <li class="photos__card"><button type="button" class="elements__delete" style="display: none;"></button> <img
+            class="elements__image"
+            src="https://st3.depositphotos.com/1016929/14555/i/600/depositphotos_145555007-stock-photo-gold-3d-100th-anniversary-sign.jpg"
+            alt="выфпрыав">
+          <div class="elements__card-container">
+            <h2 class="elements__header">выфпрыав</h2>
+            <div class="elements__like-container"><button class="elements__like elements__like_active" type="button"
+                title="Оценить фотографию" aria-label="Поставить лайк"></button> <span
+                class="elements__like-counter">2</span></div>
+          </div>
+        </li>
+        <li class="photos__card"><button type="button" class="elements__delete" style="display: none;"></button> <img
+            class="elements__image" src="https://i.pinimg.com/564x/50/05/32/500532bedf8d70e34dfa37d6da1ddf81.jpg"
+            alt="cat_2">
+          <div class="elements__card-container">
+            <h2 class="elements__header">cat_2</h2>
+            <div class="elements__like-container"><button class="elements__like elements__like_active" type="button"
+                title="Оценить фотографию" aria-label="Поставить лайк"></button> <span
+                class="elements__like-counter">3</span></div>
+          </div>
+        </li>
+        <li class="photos__card"><button type="button" class="elements__delete" style="display: none;"></button> <img
+            class="elements__image" src="https://i.pinimg.com/564x/1e/00/be/1e00becad75c8c3a604a33e4d1581ff9.jpg"
+            alt="cat">
+          <div class="elements__card-container">
+            <h2 class="elements__header">cat</h2>
+            <div class="elements__like-container"><button class="elements__like elements__like_active" type="button"
+                title="Оценить фотографию" aria-label="Поставить лайк"></button> <span
+                class="elements__like-counter">1</span></div>
+          </div>
+        </li>
+        <li class="photos__card"><button type="button" class="elements__delete" style="display: none;"></button> <img
+            class="elements__image" src="https://i.pinimg.com/564x/1e/00/be/1e00becad75c8c3a604a33e4d1581ff9.jpg"
+            alt="cat">
+          <div class="elements__card-container">
+            <h2 class="elements__header">cat</h2>
+            <div class="elements__like-container"><button class="elements__like elements__like_active" type="button"
+                title="Оценить фотографию" aria-label="Поставить лайк"></button> <span
+                class="elements__like-counter">1</span></div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+
+  </main>
+
+  <footer class="footer">
+
+
+
+  </footer>
+
+</body>
+
+</html>

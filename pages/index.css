@@ -1,0 +1,25 @@
+/* Подключение шрифтов и normalize */
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts.css);
+
+/* Подключаем стиль общего блока всего сайта */
+@import url(../blocks/page/page.css);
+
+/* Подключаем стили header */
+@import url(../blocks/header/header.css);
+@import url(../blocks/logo/logo.css);
+
+/* Подключаем стили секции profile */
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/__name/profile__name.css);
+@import url(../blocks/profile/__button/profile__button.css);
+@import url(../blocks/profile/__description/profile__description.css);
+@import url(../blocks/profile/__button/_edit/profile__button_edit.css);
+@import url(../blocks/profile/__button/_add/profile__button_add.css);
+
+/* Подключаем стили секции photos */
+@import url(../blocks/photos/photos.css);
+@import url(../blocks/photos/__list/photo__list.css);
+@import url(../blocks/photos/__card/photos__card.css);
