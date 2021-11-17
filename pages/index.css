@@ -27,3 +27,9 @@
 @import url(../blocks/elements/__card-container/elements__card-container.css);
 @import url(../blocks/elements/__header/elements__header.css);
 @import url(../blocks/elements/__like-button/elements__like-button.css);
+@import url(../blocks/elements/__like/elements__like.css);
+@import url(../blocks/elements/__like/_active/elements__like_active.css);
+
+/* Подключаем стили footer */
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);

@@ -1,0 +1,13 @@
+.elements__like {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  background-image: url(/images/like.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: 50%;
+  cursor: pointer;
+  transition: 0.335s ease-in-out;
+}
