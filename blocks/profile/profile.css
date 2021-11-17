@@ -5,3 +5,12 @@
   align-items: center;
   padding-top: 40px;
 }
+
+@media (max-width: 768px) {
+  .profile {
+    margin: 0 0 36px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
