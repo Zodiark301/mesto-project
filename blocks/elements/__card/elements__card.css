@@ -1,7 +1,6 @@
 .elements__card {
   margin: 0 auto;
-  width: 282px;
+  width: 100%;
   background-color: #fff;
-  position: relative;
   border-radius: 10px;
 }

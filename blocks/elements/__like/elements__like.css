@@ -11,3 +11,7 @@
   cursor: pointer;
   transition: 0.335s ease-in-out;
 }
+
+.elements__like:hover {
+  opacity: 0.6;
+}
