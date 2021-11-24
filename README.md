@@ -23,4 +23,4 @@
 
 ## Посмотреть проект:
 
-[Перейте в проект](https://zodiark301.github.io/mesto-project/index.html)
+[Перейти в проект "MESTO"](https://zodiark301.github.io/mesto-project/index.html)
