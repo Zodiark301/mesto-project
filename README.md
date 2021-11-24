@@ -20,3 +20,7 @@
 * BEM Methodology
 * Файловая структура (Nested BEM)
 * Git
+
+## Посмотреть проект:
+
+[Перейте в проект](https://zodiark301.github.io/mesto-project/index.html)
