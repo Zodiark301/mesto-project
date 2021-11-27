@@ -1,4 +1,4 @@
-.profile__button_edit {
+.profile__button_type_edit {
   margin: 4px 0 0 20px;
   width: 24px;
   height: 24px;
@@ -7,7 +7,7 @@
 }
 
 @media (max-width: 767px) {
-  .profile__button_edit {
+  .profile__button_type_edit {
     margin: 2px 20px 0 10px;
     width: 18px;
     height: 18px;

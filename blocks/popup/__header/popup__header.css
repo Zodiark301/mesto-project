@@ -1,5 +1,5 @@
 .popup__header {
-  margin: 0 0 50px;
+  margin: 0px 0 48px;
   font-size: 24px;
   font-weight: 900;
   line-height: 28px;
@@ -8,8 +8,8 @@
 
 @media (max-width: 767px) {
   .popup__header {
-    font-weight: 900;
     font-size: 18px;
     line-height: 22px;
+    margin: 0 0 75px;
   }
 }
