@@ -22,6 +22,6 @@
     width: 30px;
     height: 30px;
     right: 0;
-    background-image: url(../../../images/small-close.svg);
+    background-size: 20px;
   }
 }

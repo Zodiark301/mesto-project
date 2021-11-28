@@ -9,6 +9,10 @@
 </head>
 
 <body class="page">
+  <!-- Не совсем понял что тут надо и что должно растягиваться,
+  задавал этот параметр сугубо из-за того что в прошлом проекте,
+  ревьюер девушка говорила что это хороший тон :)
+  Поэтому просто удалил, глянул, ничего не поменялось. -->
 
   <header class="header">
     <img class="logo" src="./images/header-logo.svg" alt="логотип проекта Mesto">
@@ -22,7 +26,7 @@
 
       <div class="profile__info">
 
-        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <h1 class="profile__name">Жак-Ив Кусто Жак-Ив Кусто</h1>
         <button class="profile__button profile__button_type_edit" type="button" title="Редактировать профиль"
           aria-label="Редактировать профиль"></button>
         <p class="profile__description">Исследователь океана</p>
@@ -100,19 +104,13 @@
     <p class="footer__copyright">© 2021 Mesto Russia</p>
   </footer>
 
-  <!-- Добрый день Владимир! Спасибо что проверили все и указали неточности в моей работе. Все ошибки кроме отступов в popup
-  я исправил за пол часа. А вот с отступами боролся весь вечер и они меня окончательно выбесили. Поэтому плююнул и пошел спать :) Один правишь другой
-  уезжает. Я конечно сделал как мог, гляньте, подойдет ли такое. Оно почти совпадает. Не знаю как по другому их
-  выровнять один в один. Только если задать ограниченную высоту, что нежелательно. Вы мою первую работу проверяли кстати
-  :))) -->
-
   <div class="popup">
 
-    <div class="popup__container" name="edit-profile">
+    <section class="popup__container">
       <button class="popup__close" type="button" title="Закрыть окно" aria-label="Закрыть"></button>
-      <form>
+      <h3 class="popup__header">Редактировать профиль</h3>
+      <form name="edit-profile">
         <fieldset class="popup__fieldset">
-          <legend class="popup__header">Редактировать профиль</legend>
           <input class="popup__input" name="name" id="name" type="text" placeholder="Имя пользователя"
             value="Жак-Ив Кусто">
           <input class="popup__input" name="about" id="about" type="text" placeholder="Описание пользователя"
@@ -120,7 +118,7 @@
         </fieldset>
         <button class="popup__button" type="submit">Сохранить</button>
       </form>
-    </div>
+    </section>
 
   </div>
 
