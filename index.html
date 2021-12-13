@@ -37,17 +37,17 @@
 
     <section class="elements">
       <ul class="elements__list">
-
-        <li class="elements__card">
-          <img class="elements__image" src="./images/karachevsk.jpg" alt="Карачаевск">
-          <div class="elements__card-container">
-            <h2 class="elements__header">Карачаевск</h2>
-            <button class="elements__like" type="button" title="Оценить фотографию"
-              aria-label="Поставить лайк"></button>
-          </div>
-        </li>
-
-        <li class="elements__card">
+        <template id="cards">
+          <li class="elements__card">
+            <img class="elements__image" src="./images/karachevsk.jpg" alt="Карачаевск">
+            <div class="elements__card-container">
+              <h2 class="elements__header">Карачаевск</h2>
+              <button class="elements__like" type="button" title="Оценить фотографию"
+                aria-label="Поставить лайк"></button>
+            </div>
+          </li>
+        </template>
+        <!-- <li class="elements__card">
           <img class="elements__image" src="./images/elbrus.jpg" alt="Эльбрус">
           <div class="elements__card-container">
             <h2 class="elements__header">Гора Эльбрус</h2>
@@ -90,7 +90,7 @@
             <button class="elements__like" type="button" title="Оценить фотографию"
               aria-label="Поставить лайк"></button>
           </div>
-        </li>
+        </li> -->
 
       </ul>
     </section>
