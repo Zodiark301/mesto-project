@@ -1,60 +1,68 @@
+// Поиск контейнера всего содержимого сайта
 const container = document.querySelector('.page');
+
+// Поиск классов попап окон
+const popUp = container.querySelector('.popup__container');
+
+// Поиск попапа и кнопок с полями редактирования профиля
+const formElementadd1 = container.querySelector('.popup_profile');
+const closeButton = formElementadd1.querySelector('.popup__close');
 const profileInfo = container.querySelector('.profile__info');
 const editButton = profileInfo.querySelector('.profile__button_type_edit');
-const popUp = container.querySelector('.popup__container');
-const closeButton = container.querySelector('.popup__close');
 const formElement = document.querySelector('[name="edit-profile"]');
 const profileTitle = profileInfo.querySelector('.profile__name');
 const profileJob = profileInfo.querySelector('.profile__description');
 const nameInput = document.querySelector('[name="name"]');
 const jobInput = document.querySelector('[name="about"]');
 
-// Кнопки добавление карточек
-//const addCardPopup = document.querySelector('.popup_card');
-//const addButtonProfile = container.querySelector('.profile__info');
+// Поиск попапа и кнопок добавления карточки
+const formElementadd2 = container.querySelector('.popup_card');
+const closeButtonCard = formElementadd2.querySelector('.popup__close');
 const buttonAddCard = document.querySelector('.profile__button_type_add');
 const formElementadd = document.querySelector('[name="addButton"]');
-//const closeButton = addCardPopup.querySelector('.popup__close-button');
 
-
-// Открытие попап окна
-function openPopUp() {
+// Универсальная функция открытия попап окна
+function openPopUp(popUp) {
   popUp.classList.add('popup_opened');
 }
 
-// Закрытие попап окна
-function closePopUp() {
+// Универсальная функция закрытия попап окна
+function closePopUp(popUp) {
   popUp.classList.remove('popup_opened');
 }
 
-// Обработчик события Click на открытие попапа
-editButton.addEventListener('click', openPopUp);
-closeButton.addEventListener('click', closePopUp);
+// Обработчик клика для открытия попапа редактирования профиля
+editButton.addEventListener('click', editProfile);
 
-// Обработчик события Click
-function openAdd() {
-  formElementadd.addEventListener('click', openPopUp);
-  closeButton.addEventListener('click', closePopUp);
-}
-openAdd();
-
-// Получение данных из полей
-editButton.addEventListener('click', function () {
+// Функция открытия попапа и получения данных из полей профиля
+function editProfile() {
+  openPopUp(formElementadd1);
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileJob.textContent;
+}
 
-});
-
-function formSubmitHandler(evt) {
+// Функция сброса стандартного поведения отправки формы, замены данных введенных пользователем в блок профиля, закрытие попапа по кнопке сохранить
+function submitHandlerForm(evt) {
   evt.preventDefault();
 
   profileTitle.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  closePopUp();
-
+  closePopUp(formElementadd1);
 }
 
-formElement.addEventListener('submit', formSubmitHandler);
+// Обработчик формы следящий за событием 'submit'
+formElement.addEventListener('submit', submitHandlerForm);
+
+// Закрытие попапа редактирования профиля
+closeButton.addEventListener('click', () => closePopUp(formElementadd1));
+
+// Открытие попапа добавления карточки
+buttonAddCard.addEventListener('click', function () {
+  openPopUp(formElementadd2);
+});
+
+// Закрытие попапа добавления карточки пользователем
+closeButtonCard.addEventListener('click', () => closePopUp(formElementadd2));
 
 // Массив стандартных карточек
 const initialCards = [
