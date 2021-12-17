@@ -21,6 +21,11 @@ const closeButtonCard = formElementadd2.querySelector('.popup__close');
 const buttonAddCard = document.querySelector('.profile__button_type_add');
 const formElementadd = document.querySelector('[name="addButton"]');
 
+formElementadd.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  console.log('fasfasfas');
+})
+
 // Универсальная функция открытия попап окна
 function openPopUp(popUp) {
   popUp.classList.add('popup_opened');
