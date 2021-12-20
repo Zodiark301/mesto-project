@@ -23,7 +23,16 @@ const formElementadd = document.querySelector('[name="addButton"]');
 
 formElementadd.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  console.log('fasfasfas');
+  const inputNameCard = evt.target.querySelector('input[name="addNameCard"]');
+  const cardName = inputNameCard.value;
+
+  const inputLinkCard = evt.target.querySelector('input[name="link"]');
+  const cardLink = inputLinkCard.value;
+
+  addCards(cardName, cardLink);
+  inputNameCard.value = '';
+  inputLinkCard.value = '';
+  closePopUp(formElementadd2);
 })
 
 // Универсальная функция открытия попап окна
@@ -104,29 +113,53 @@ const containerElements = document.querySelector('.elements__list');
 // template шаблон одной карточки
 function addCards(imageUrl, descriptionName) {
   // Клонирование template шаблона
-  const elementDiv = elementCard.querySelector('.elements__card').cloneNode(true);
-  // Ищем класс кнопки сердечка карточки
-  const cardLike = elementDiv.querySelector('.elements__like');
-  // Поля template шаблона
-  elementDiv.querySelector('.elements__image').src = imageUrl;
-  elementDiv.querySelector('.elements__image').alt = descriptionName;
-  elementDiv.querySelector('.elements__header').textContent = descriptionName;
-  // Вызов функции лайков каждой карточки
-  cardLike.addEventListener('click', pressLike);
-  return elementDiv;
+  // const elementDiv = elementCard.querySelector('.elements__card').cloneNode(true);
+  // // Ищем класс кнопки сердечка карточки
+  // const cardLike = elementDiv.querySelector('.elements__like');
+  // // Поля template шаблона
+  // elementDiv.querySelector('.elements__image').src = imageUrl;
+  // elementDiv.querySelector('.elements__image').alt = descriptionName;
+  // elementDiv.querySelector('.elements__header').textContent = descriptionName;
+  // // Вызов функции лайков каждой карточки
+  // cardLike.addEventListener('click', pressLike);
+  // return elementDiv;
+}
+
+function createCard(imageUrl, descriptionName) {
+  let card = elementCard.querySelector('.elements__card').cloneNode(true);
+  let cardImage = card.querySelector('.elements__image');
+  let cardText = card.querySelector('.elements__header');
+  let cardLike = card.querySelector('.elements__like');
+  let cardRemove = card.querySelector('.elements__remove-button');
+
+  // Подставляем введенные данные из формы
+  cardImage.src = imageUrl;
+  cardImage.alt = descriptionName;
+  cardText.textContent = descriptionName;
+
+  cardLike.addEventListener('click', function (evt) {
+    evt.target.classList.toggle('elements__like_active');
+  });
+
+  // Удаление карточки
+  cardRemove.addEventListener('click', function (evt) {
+    evt.target.closest('.elements__card').remove();
+  });
+
+  return card;
 }
 
 // Ищем и меняем класс в лайках
 function pressLike(event) {
   event.target.classList.toggle('elements__like_active');
-};
+}
 
 // Добавляем стандартные карточки
 const standartCards = initialCards.map(function (elementDiv) {
   // Возвращаем элементы объекта из массива
   return addCards(elementDiv.link, elementDiv.name);
 });
-// Добавляем карточки в ко
+// Добавляем карточки в конец
 containerElements.prepend(...standartCards);
 
 

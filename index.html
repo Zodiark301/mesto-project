@@ -66,9 +66,9 @@
       <h2 class="popup__header">Редактировать профиль</h2>
       <form name="edit-profile">
         <fieldset class="popup__fieldset">
-          <input class="popup__input" name="name" id="name" type="text" placeholder="Имя пользователя"
+          <input class="popup__input popup__input_type_name" name="name" id="name" type="text" placeholder="Имя пользователя"
             value="Жак-Ив Кусто" required="required">
-          <input class="popup__input" name="about" id="about" type="text" placeholder="Описание пользователя"
+          <input class="popup__input popup__input_type_description" name="about" id="about" type="text" placeholder="Описание пользователя"
             value="Исследователь океана" required="required">
         </fieldset>
         <button class="popup__button" type="submit">Сохранить</button>
@@ -84,9 +84,9 @@
       <h2 class="popup__header">Новое место</h2>
       <form name="addButton">
         <fieldset class="popup__fieldset">
-          <input class="popup__input" name="name" id="name" type="text" placeholder="Название" value="Название"
-            required="required">
-          <input class="popup__input" name="link" id="link" type="text" placeholder="Ссылка на картинку"
+          <input class="popup__input" name="addNameCard" id="addNameCard" type="text" placeholder="Название"
+            value="Название" required="required">
+          <input class="popup__input pppp" name="link" id="link" type="text" placeholder="Ссылка на картинку"
             value="Ссылка на картинку" required="required">
         </fieldset>
         <button class="popup__button" type="submit">Сохранить</button>
@@ -95,7 +95,17 @@
 
   </div>
 
-  <script src="./scripts/index.js"></script>
+  <div class="popup popup_image popup_image-opened">
+    <div class="popup__figure-container">
+      <figure class="popup__figure">
+        <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Архыз">
+        <figcaption class="popup__caption">Архыз</figcaption>
+      </figure>
+      <button class="popup__close-button" type="button" aria-label="Выйти"></button>
+    </div>
+  </div>
+
+  <script src="scripts/index.js"></script>
 </body>
 
 </html>
