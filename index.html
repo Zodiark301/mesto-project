@@ -46,6 +46,7 @@
               <button class="elements__like" type="button" title="Оценить фотографию"
                 aria-label="Поставить лайк"></button>
             </div>
+            <button type="button" class="elements__remove-button"></button>
           </li>
         </template>
 
@@ -64,7 +65,7 @@
     <section class="popup__container">
       <button class="popup__close" type="button" title="Закрыть окно" aria-label="Закрыть"></button>
       <h2 class="popup__header">Редактировать профиль</h2>
-      <form name="edit-profile">
+      <form class="popup__form" name="edit-profile">
         <fieldset class="popup__fieldset">
           <input class="popup__input popup__input_type_name" name="name" id="name" type="text" placeholder="Имя пользователя"
             value="Жак-Ив Кусто" required="required">
@@ -82,11 +83,11 @@
     <section class="popup__container">
       <button class="popup__close" type="button" title="Закрыть окно" aria-label="Закрыть"></button>
       <h2 class="popup__header">Новое место</h2>
-      <form name="addButton">
+      <form class="popup__form" name="addButton">
         <fieldset class="popup__fieldset">
-          <input class="popup__input" name="addNameCard" id="addNameCard" type="text" placeholder="Название"
+          <input class="popup__input popup__input_type_card-name" name="addNameCard" id="addNameCard" type="text" placeholder="Название"
             value="Название" required="required">
-          <input class="popup__input pppp" name="link" id="link" type="text" placeholder="Ссылка на картинку"
+          <input class="popup__input popup__input_type_url" name="link" id="link" type="text" placeholder="Ссылка на картинку"
             value="Ссылка на картинку" required="required">
         </fieldset>
         <button class="popup__button" type="submit">Сохранить</button>
@@ -101,7 +102,7 @@
         <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Архыз">
         <figcaption class="popup__caption">Архыз</figcaption>
       </figure>
-      <button class="popup__close-button" type="button" aria-label="Выйти"></button>
+      <button class="popup__close" type="button" aria-label="Выйти"></button>
     </div>
   </div>
 

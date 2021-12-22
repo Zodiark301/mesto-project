@@ -31,6 +31,7 @@
 @import url(../blocks/elements/__header/elements__header.css);
 @import url(../blocks/elements/__like/elements__like.css);
 @import url(../blocks/elements/__like/_active/elements__like_active.css);
+@import url(../blocks/elements/__remove-button/elements__remove-button.css);
 
 /* Подключаем стили footer */
 @import url(../blocks/footer/footer.css);
@@ -45,3 +46,8 @@
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__button/popup__button.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__image/popup__image.css);
+@import url(../blocks/popup/_image-opened/popup_image-opened.css);
+@import url(../blocks/popup/__caption/popup__caption.css);
+@import url(../blocks/popup/__figure/popup__figure.css);
+@import url(../blocks/popup/__figure-container/popup__figure-container.css);
