@@ -107,6 +107,7 @@ function createCard(name, link) {
 
   cardImageElement.addEventListener('click', function () {
     previewTitle.textContent = name;
+    previewImg.alt = name;
     previewImg.src = link;
     openPopup(previewPopup);
   })
@@ -128,4 +129,10 @@ submitNewCardForm.addEventListener('submit', function (e) {
   const newCardLink = newCardLinkInput.value;
   createCard(newCardName, newCardLink);
   closePopup(newCardPopup);
+  clearCardForm();
 })
+
+function clearCardForm() {
+  newCardNameInput.value = "";
+  newCardLinkInput.value = "";
+}
