@@ -94,7 +94,8 @@ initialCards.reverse().forEach((currentData) => {
   createCard(currentData.name, currentData.link);
 });
 
-function createCard(name, link) {
+
+function getCard(name, link) {
   const newCardElement = cardTemplate.cloneNode(true).content.querySelector('.elements__card');
   const cardTitleElement = newCardElement.querySelector('.elements__header');
   const cardImageElement = newCardElement.querySelector('.elements__image');
@@ -120,7 +121,12 @@ function createCard(name, link) {
     newCardElement.remove();
   })
 
-  placesList.prepend(newCardElement);
+  return newCardElement
+}
+
+function createCard(name, link) {
+  const newCard = getCard(name, link)
+  placesList.prepend(newCard);
 }
 
 submitNewCardForm.addEventListener('submit', function (e) {
