@@ -94,7 +94,6 @@ initialCards.reverse().forEach((currentData) => {
   createCard(currentData.name, currentData.link);
 });
 
-
 function getCard(name, link) {
   const newCardElement = cardTemplate.cloneNode(true).content.querySelector('.elements__card');
   const cardTitleElement = newCardElement.querySelector('.elements__header');
