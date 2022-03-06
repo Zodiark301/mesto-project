@@ -1,3 +1,4 @@
+import './pages/index.css';
 // Массив стандартных карточек
 const initialCards = [
   {
