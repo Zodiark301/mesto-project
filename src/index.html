@@ -56,7 +56,7 @@
   </main>
 
   <footer class="footer">
-    <p class="footer__copyright">© 2021 Mesto Russia</p>
+    <p class="footer__copyright">© 2022 Mesto Russia</p>
   </footer>
 
   <div class="popup popup_profile">
@@ -64,12 +64,18 @@
     <section class="popup__container">
       <button class="popup__close" type="button" title="Закрыть окно" aria-label="Закрыть"></button>
       <h2 class="popup__header">Редактировать профиль</h2>
-      <form class="popup__form" name="edit-profile">
+      <form class="popup__form" name="edit-profile" novalidate>
         <fieldset class="popup__fieldset">
-          <input class="popup__input popup__input_type_name" name="name" id="name" type="text"
-            placeholder="Имя пользователя" value="" required="required">
-          <input class="popup__input popup__input_type_description" name="about" id="about" type="text"
-            placeholder="Описание пользователя" value="" required="required">
+          <label>
+            <input class="popup__input popup__input_type_name" name="name" id="name" minlength="2" maxlength="40"
+              type="text" placeholder="Имя пользователя" value="" required>
+            <span id="error-name" class="popup__error"></span>
+          </label>
+          <label>
+            <input class="popup__input popup__input_type_description" name="about" id="about" minlength="2"
+              maxlength="200" type="text" placeholder="Описание пользователя" value="" required>
+            <span id="error-about" class="popup__error"></span>
+          </label>
         </fieldset>
         <button class="popup__button" type="submit">Сохранить</button>
       </form>
@@ -82,14 +88,17 @@
     <section class="popup__container">
       <button class="popup__close" type="button" title="Закрыть окно" aria-label="Закрыть"></button>
       <h2 class="popup__header">Новое место</h2>
-      <form class="popup__form" name="addButton">
+      <form class="popup__form" name="addButton" novalidate>
         <fieldset class="popup__fieldset">
-          <input class="popup__input popup__input_type_card-name" name="addNameCard" id="addNameCard" type="text"
-            placeholder="Название" value="" required="required">
-          <input class="popup__input popup__input_type_url" name="link" id="link" type="text"
-            placeholder="Ссылка на картинку" value="" required="required">
+          <input class="popup__input popup__input_type_card-name" name="addNameCard" id="addNameCard" minlength="2"
+            maxlength="30" type="text" placeholder="Название" value="" required>
+          <span id="error-addNameCard" class="popup__error"></span>
+          <input class="popup__input popup__input_type_url"
+            pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?"
+            name="link" id="link" type="url" placeholder="Ссылка на картинку" value="" required>
+          <span id="error-link" class="popup__error"></span>
         </fieldset>
-        <button class="popup__button" type="submit">Сохранить</button>
+        <button class="popup__button" type="submit" id="add-card-submit">Создать</button>
       </form>
     </section>
 
@@ -98,9 +107,8 @@
   <div class="popup popup_image popup_image-opened">
     <div class="popup__figure-container">
       <figure class="popup__figure">
-        <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
-          alt="Архыз">
-        <figcaption class="popup__caption">Архыз</figcaption>
+        <img class="popup__image" src="#" alt="#">
+        <figcaption class="popup__caption"></figcaption>
       </figure>
       <button class="popup__close" type="button" aria-label="Выйти"></button>
     </div>
