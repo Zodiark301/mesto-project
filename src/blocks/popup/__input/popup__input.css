@@ -1,5 +1,4 @@
 .popup__input {
-  margin: 0 0 25px;
   padding: 0 0 13px;
   width: 100%;
   font-family: inherit;
@@ -14,6 +13,10 @@
 
 .popup__input:last-child {
   margin: 0 0 45px;
+}
+
+.popup__input::placeholder {
+  color: #c4c4c4;
 }
 
 @media screen and (max-width: 767px) {
