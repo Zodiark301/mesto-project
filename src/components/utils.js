@@ -34,4 +34,5 @@ function clearCardForm() {
   imageInput.value = "";
 }
 
+
 export { openPopup, closePopup, clearCardForm };
