@@ -6,6 +6,7 @@
   padding-top: 40px;
   max-width: 880px;
   width: 100%;
+  position: relative;
 }
 
 @media (max-width: 1023px) {
