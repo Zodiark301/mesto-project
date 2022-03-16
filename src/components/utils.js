@@ -1,4 +1,4 @@
-import { newCardNameInput, newCardLinkInput } from './modal.js';
+import { newCardNameInput, newCardLinkInput, imageInput } from './modal.js';
 
 const buttonEscKey = 27;
 
@@ -28,8 +28,10 @@ function closePopup(popup) {
 }
 
 function clearCardForm() {
-  newCardNameInput.value = '';
-  newCardLinkInput.value = '';
+  newCardNameInput.value = "";
+  newCardLinkInput.value = "";
+  imageInput.value = "";
 }
+
 
 export { openPopup, closePopup, clearCardForm };

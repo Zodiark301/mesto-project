@@ -1,37 +1,10 @@
 import '../pages/index.css';
 
-import { createCard, editProfileButton, newCardButton } from './card.js';
+import { editProfileButton, newCardButton, placesList, getCard } from './card.js';
 import { enableValidation, validationConfig } from './validate.js';
 import { clearCardForm, openPopup } from './utils.js';
-import { editProfilePopup, descriptionElement, nameInput, descriptionInput, nameElement, newCardPopup } from './modal.js';
-
-// Массив стандартных карточек
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+import { editProfilePopup, descriptionElement, nameInput, descriptionInput, nameElement, newCardPopup, profileAvatar, popupAvatar, nameProfileImage } from './modal.js';
+import API from './api.js';
 
 editProfileButton.addEventListener('click', function () {
   openPopup(editProfilePopup);
@@ -44,8 +17,24 @@ newCardButton.addEventListener('click', function () {
   openPopup(newCardPopup);
 });
 
-initialCards.reverse().forEach((currentData) => {
-  createCard(currentData.name, currentData.link);
+profileAvatar.addEventListener('click', function () {
+  clearCardForm();
+  openPopup(popupAvatar);
 });
+
+Promise.all([API.gettingProfile(), API.gettingCards()])
+  .then(([user, card]) => {
+    nameElement.textContent = user.name;
+    descriptionElement.textContent = user.about;
+    nameProfileImage.src = user.avatar;
+    const initialCards = card.map(function (currentData) {
+      return getCard(currentData.name, currentData.link, currentData._id, currentData.likes, user._id, currentData.owner);
+    });
+    placesList.prepend(...initialCards);
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
 
 enableValidation(validationConfig);
