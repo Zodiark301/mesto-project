@@ -78,13 +78,14 @@
             <span id="error-about" class="popup__error"></span>
           </label>
         </fieldset>
-        <button class="popup__button popup__button_save_profile type=" submit">Сохранить</button>
+
+        <button type="submit" class="popup__button popup__button_save_profile">Сохранить</button>
       </form>
     </section>
 
   </div>
 
-  <div class="popup popup_card">
+  <div class=" popup popup_card">
 
     <section class="popup__container">
       <button class="popup__close" type="button" title="Закрыть окно" aria-label="Закрыть"></button>
@@ -126,7 +127,7 @@
           <label class="popup__input-container">
             <input class="popup__input popup__input_type_avatar" type="url"
               pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?"
-              name="link" id="link-avatar" placeholder="Ссылка на картинку" required="required" value="">
+              name="link" id="link-avatar" placeholder="Ссылка на картинку" value="" required>
             <span id="error-link-avatar" class="popup__error"></span>
           </label>
         </fieldset>
