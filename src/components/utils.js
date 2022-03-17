@@ -2,8 +2,10 @@ import { newCardNameInput, newCardLinkInput, imageInput } from './modal.js';
 
 const buttonEscKey = 27;
 
+
+// Поменял на evt.which по рекомендации наставника, просто у меня все попапы спокойно закрываются, не могу проверить верно ли будет у Вас это :)
 const handleEscUp = (evt) => {
-  if (evt.keyCode === buttonEscKey) {
+  if (evt.which === buttonEscKey) {
     const activePopup = document.querySelector('.popup_opened');
     closePopup(activePopup);
   }
