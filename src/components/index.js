@@ -29,9 +29,11 @@ Promise.all([API.gettingProfile(), API.gettingCards()])
     nameProfileImage.src = user.avatar;
     const initialCards = card.map(function (currentData) {    
       const myCard = new Card(currentData);  
+      document.userInfo = user;      
       return myCard._generate();
-    });
+    });    
     placesList.prepend(...initialCards);
+    
   })
   .catch(err => {
     console.log(err);
