@@ -1,6 +1,6 @@
 import '../pages/index.css';
 
-import { editProfileButton, newCardButton, placesList, getCard } from './card.js';
+import { Card, editProfileButton, newCardButton, placesList, getCard } from './card.js';
 import { enableValidation, validationConfig } from './validate.js';
 import { clearCardForm, openPopup } from './utils.js';
 import { editProfilePopup, descriptionElement, nameInput, descriptionInput, nameElement, newCardPopup, profileAvatar, popupAvatar, nameProfileImage } from './modal.js';
@@ -27,8 +27,9 @@ Promise.all([API.gettingProfile(), API.gettingCards()])
     nameElement.textContent = user.name;
     descriptionElement.textContent = user.about;
     nameProfileImage.src = user.avatar;
-    const initialCards = card.map(function (currentData) {
-      return getCard(currentData.name, currentData.link, currentData._id, currentData.likes, user._id, currentData.owner);
+    const initialCards = card.map(function (currentData) {    
+      const myCard = new Card(currentData);  
+      return myCard._generate();
     });
     placesList.prepend(...initialCards);
   })
