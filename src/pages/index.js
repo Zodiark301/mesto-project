@@ -1,10 +1,10 @@
 import '../pages/index.css';
-
-import { Card, editProfileButton, newCardButton, placesList, getCard } from './card.js';
-import { enableValidation, validationConfig } from './validate.js';
-import { clearCardForm, openPopup } from './utils.js';
-import { editProfilePopup, descriptionElement, nameInput, descriptionInput, nameElement, newCardPopup, profileAvatar, popupAvatar, nameProfileImage } from './modal.js';
-import API from './api.js';
+import Card from '../components/card';
+import {editProfileButton, newCardButton, placesList} from '../utils/constants.js';
+import { enableValidation, validationConfig } from '../components/validate.js';
+import { clearCardForm, openPopup } from '../utils/utils.js';
+import { editProfilePopup, descriptionElement, nameInput, descriptionInput, nameElement, newCardPopup, profileAvatar, popupAvatar, nameProfileImage } from '../components/modal.js';
+import API from '../components/api.js';
 
 editProfileButton.addEventListener('click', function () {
   openPopup(editProfilePopup);
@@ -28,12 +28,11 @@ Promise.all([API.gettingProfile(), API.gettingCards()])
     descriptionElement.textContent = user.about;
     nameProfileImage.src = user.avatar;
     const initialCards = card.map(function (currentData) {    
-      const myCard = new Card(currentData);  
+      const myCard = new Card(currentData, '.elements__card');  
       document.userInfo = user;      
       return myCard._generate();
     });    
-    placesList.prepend(...initialCards);
-    
+    placesList.prepend(...initialCards);    
   })
   .catch(err => {
     console.log(err);

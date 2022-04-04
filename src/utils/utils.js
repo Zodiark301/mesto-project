@@ -1,4 +1,4 @@
-import { newCardNameInput, newCardLinkInput, imageInput } from './modal.js';
+import { newCardNameInput, newCardLinkInput, imageInput } from '../components/modal.js';
 
 const buttonEscKey = 27;
 

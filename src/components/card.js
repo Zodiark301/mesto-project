@@ -1,20 +1,10 @@
-import { openPopup } from "./utils";
+import { openPopup } from "../utils/utils.js";
+import { cardTemplate } from "../utils/constants.js";
 import API from './api.js';
 
-const editProfileButton = document.querySelector('.profile__button_type_edit');
-const newCardButton = document.querySelector('.profile__button_type_add');
-
-const previewPopup = document.querySelector('.popup_image');
-
-const previewTitle = previewPopup.querySelector('.popup__caption');
-const previewImg = previewPopup.querySelector('.popup__image');
-
-const cardTemplate = document.getElementById('cards');
-const placesList = document.querySelector('.elements__list');
-
-
-export class Card {
-  constructor (data) {
+ export default class Card {
+  constructor (data, selector) {
+    this._selector = selector;
     this._name = data.name;
     this._link = data.link;
     this._id = data._id;
@@ -36,7 +26,7 @@ export class Card {
   }
 
   _getElement () {
-    const element = cardTemplate.cloneNode(true).content.querySelector('.elements__card');
+    const element = cardTemplate.cloneNode(true).content.querySelector(this._selector);
     return element
   }
   
@@ -93,13 +83,10 @@ export class Card {
     
     if (document.userInfo._id !== this._owner._id) {      
     this._element.querySelector('.elements__remove-button').remove();
-  };
-  
+  };    
     const newCardElement = this._element;
     const cardTitleElement = newCardElement.querySelector('.elements__header');
-    const cardImageElement = newCardElement.querySelector('.elements__image');
-    const deleteButton = newCardElement.querySelector('.elements__remove-button');
-    
+    const cardImageElement = newCardElement.querySelector('.elements__image');    
   
     cardTitleElement.textContent = this._name;
     cardImageElement.alt = this._name;
@@ -110,8 +97,4 @@ export class Card {
   }
 }
 
-function getCard(card) {
- 
-};
 
-export { cardTemplate, placesList, editProfileButton, newCardButton, getCard };
