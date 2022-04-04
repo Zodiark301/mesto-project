@@ -77,8 +77,8 @@ submitNewCardForm.addEventListener('submit', function (e) {
   API.createCards(newCardNameInput.value, newCardLinkInput.value)
     .then(res => {
       disableButton(addCardSubmit, validationConfig);
-      const myCard = new Card (res, '.elements__card');     
-      cardListSelector.prepend(myCard._generate());
+      const car = new Card (res, '.elements__card');     
+      document.querySelector(cardListSelector).prepend(card._generate());
       closePopup(newCardPopup);
       clearCardForm();
     })

@@ -1,21 +1,20 @@
-import Card from "./Card.js";
-
 export default class Section {
-  constructor ({data}, containerSelector) {
-    this._renderedItems = data,
+  constructor ({data, renderer}, containerSelector) {
+    this._itemsToRender = data;
+    this._renderer = renderer;
     this._container = document.querySelector(containerSelector);
   }
-  setItem (element) {
+  addItem (element) {
     this._container.append(element);
   }
   clear () {
     this._container.innerHTML = '';
   }
+  
   renderItems () {
-    this._renderedItems.forEach((item) => {
-      const card = new Card (item, '.elements__card');
-      const cardElement = card._generate();
-      this.setItem(cardElement);
+    this.clear();
+    this._itemsToRender.forEach((item) => {
+      this._renderer(item);
     })
   }
 }

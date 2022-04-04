@@ -25,12 +25,19 @@ profileAvatar.addEventListener('click', function () {
 });
 
 Promise.all([API.gettingProfile(), API.gettingCards()])
-  .then(([user, card]) => {
+  .then(([user, cards]) => {
     nameElement.textContent = user.name;
     descriptionElement.textContent = user.about;
     nameProfileImage.src = user.avatar;    
     document.userInfo = user;
-    const cardsList = new Section ({data:card}, cardListSelector)
+    
+    const cardsList = new Section ({
+      data:cards,
+       renderer: (item) => {
+        const card = new Card (item, '.elements__card');
+        const cardElement = card._generate();
+        cardsList.addItem(cardElement);
+       }}, cardListSelector)
     cardsList.renderItems();
   })
   .catch(err => {
