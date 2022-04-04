@@ -1,6 +1,6 @@
 import { closePopup, clearCardForm } from '../utils/utils.js';
-import  Card  from './card.js';
-import { placesList } from '../utils/constants.js';
+import Card from './Card.js';
+import { cardListSelector} from '../utils/constants.js';
 import { disableButton, validationConfig } from './validate.js';
 import API from './api.js';
 
@@ -78,7 +78,7 @@ submitNewCardForm.addEventListener('submit', function (e) {
     .then(res => {
       disableButton(addCardSubmit, validationConfig);
       const myCard = new Card (res, '.elements__card');     
-      placesList.prepend(myCard._generate());
+      cardListSelector.prepend(myCard._generate());
       closePopup(newCardPopup);
       clearCardForm();
     })

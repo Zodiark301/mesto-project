@@ -1,10 +1,12 @@
 import '../pages/index.css';
-import Card from '../components/card';
-import {editProfileButton, newCardButton, placesList} from '../utils/constants.js';
+import Card from '../components/Card.js';
+import {editProfileButton, newCardButton, cardListSelector} from '../utils/constants.js';
 import { enableValidation, validationConfig } from '../components/validate.js';
 import { clearCardForm, openPopup } from '../utils/utils.js';
 import { editProfilePopup, descriptionElement, nameInput, descriptionInput, nameElement, newCardPopup, profileAvatar, popupAvatar, nameProfileImage } from '../components/modal.js';
 import API from '../components/api.js';
+import Section from '../components/Section';
+
 
 editProfileButton.addEventListener('click', function () {
   openPopup(editProfilePopup);
@@ -26,13 +28,10 @@ Promise.all([API.gettingProfile(), API.gettingCards()])
   .then(([user, card]) => {
     nameElement.textContent = user.name;
     descriptionElement.textContent = user.about;
-    nameProfileImage.src = user.avatar;
-    const initialCards = card.map(function (currentData) {    
-      const myCard = new Card(currentData, '.elements__card');  
-      document.userInfo = user;      
-      return myCard._generate();
-    });    
-    placesList.prepend(...initialCards);    
+    nameProfileImage.src = user.avatar;    
+    document.userInfo = user;
+    const cardsList = new Section ({data:card}, cardListSelector)
+    cardsList.renderItems();
   })
   .catch(err => {
     console.log(err);
