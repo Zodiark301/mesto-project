@@ -1,6 +1,6 @@
 import { openPopup } from "../utils/utils.js";
 import { cardTemplate } from "../utils/constants.js";
-import API from './api.js';
+import API from './API.js';
 
  export default class Card {
   constructor (data, selector) {

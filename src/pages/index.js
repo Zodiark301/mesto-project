@@ -4,9 +4,16 @@ import {editProfileButton, newCardButton, cardListSelector} from '../utils/const
 import { enableValidation, validationConfig } from '../components/validate.js';
 import { clearCardForm, openPopup } from '../utils/utils.js';
 import { editProfilePopup, descriptionElement, nameInput, descriptionInput, nameElement, newCardPopup, profileAvatar, popupAvatar, nameProfileImage } from '../components/modal.js';
-import API from '../components/api.js';
+import API from '../components/API.js';
 import Section from '../components/Section';
 
+const api = new API ({
+  url:'https://nomoreparties.co/v1/plus-cohort7',
+  headers : {
+    authorization: 'ea769cc4-10ce-4fe4-88ef-99f1e88db45d',
+    'Content-Type': 'application/json' //тип данных для создания
+  }
+});
 
 editProfileButton.addEventListener('click', function () {
   openPopup(editProfilePopup);
@@ -24,7 +31,7 @@ profileAvatar.addEventListener('click', function () {
   openPopup(popupAvatar);
 });
 
-Promise.all([API.gettingProfile(), API.gettingCards()])
+Promise.all([api.gettingProfile(), api.gettingCards()])
   .then(([user, cards]) => {
     nameElement.textContent = user.name;
     descriptionElement.textContent = user.about;

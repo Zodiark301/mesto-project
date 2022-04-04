@@ -2,7 +2,7 @@ import { closePopup, clearCardForm } from '../utils/utils.js';
 import Card from './Card.js';
 import { cardListSelector} from '../utils/constants.js';
 import { disableButton, validationConfig } from './validate.js';
-import API from './api.js';
+import API from './API.js';
 
 const editProfilePopup = document.querySelector('.popup_profile');
 const nameElement = document.querySelector('.profile__name');
