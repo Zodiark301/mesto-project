@@ -6,14 +6,17 @@ import { clearCardForm, openPopup } from '../utils/utils.js';
 import { editProfilePopup, descriptionElement, nameInput, descriptionInput, nameElement, newCardPopup, profileAvatar, popupAvatar, nameProfileImage } from '../components/modal.js';
 import API from '../components/API.js';
 import Section from '../components/Section';
+import UserInfo from '../components/UserInfo';
 
 const api = new API ({
   url:'https://nomoreparties.co/v1/plus-cohort7',
   headers : {
     authorization: 'ea769cc4-10ce-4fe4-88ef-99f1e88db45d',
-    'Content-Type': 'application/json' //тип данных для создания
+    'Content-Type': 'application/json'
   }
 });
+
+const userInfo = new UserInfo('.profile');
 
 editProfileButton.addEventListener('click', function () {
   openPopup(editProfilePopup);
@@ -31,25 +34,34 @@ profileAvatar.addEventListener('click', function () {
   openPopup(popupAvatar);
 });
 
-Promise.all([api.gettingProfile(), api.gettingCards()])
+const newCard = new Section ({
+  renderer: (item, userId) => {
+    const cardToCreate = new Card (item, userId, {
+      handleCardClick : (name, link) => {popupWithImage.open(name, link)}
+    }, {
+      handleLike: (card, id) => {handleLike(card, id, cardToCreate)}
+    }, {
+      handleDelete: (id) => {
+        api.deleteCard(id)
+        .catch(err => console.log(err));
+      }
+    });
+    return cardToCreate._generate();
+  }
+});
+
+
+Promise.all([api.gettingProfileAPI(), api.gettingCardsAPI()])
   .then(([user, cards]) => {
-    nameElement.textContent = user.name;
-    descriptionElement.textContent = user.about;
-    nameProfileImage.src = user.avatar;    
+    userInfo.setUserInfo(user);
+    userInfo.setUserAvatar(user);
     document.userInfo = user;
-    
-    const cardsList = new Section ({
-      data:cards,
-       renderer: (item) => {
-        const card = new Card (item, '.elements__card');
-        const cardElement = card._generate();
-        cardsList.addItem(cardElement);
-       }}, cardListSelector)
-    cardsList.renderItems();
+
+    newCard.renderItems(cards, user._id);
   })
   .catch(err => {
     console.log(err);
   });
 
 
-enableValidation(validationConfig);
+
