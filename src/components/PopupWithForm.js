@@ -15,6 +15,9 @@ export default class PopupWithForm extends Popup {
   close() {
     super.close();
     this._formEl.reset();
+    this._inputList.forEach((input) => {
+      this._resetValidation(input);
+    })
   }
 
   _getInputsValues() {

@@ -13,11 +13,11 @@ const showInputError = (inputElement, errorElement, errorMessage, config) => {
   errorElement.textContent = errorMessage;
 };
 
-const hideInputError = (inputElement, errorElement, config) => {
-  inputElement.classList.remove(config.inputInvalidClass);
-  errorElement.classList.remove(config.errorClass);
-  errorElement.textContent = '';
-};
+// const hideInputError = (inputElement, errorElement, config) => {
+//   inputElement.classList.remove(config.inputInvalidClass);
+//   errorElement.classList.remove(config.errorClass);
+//   errorElement.textContent = '';
+// };
 
 const checkinputValidity = (formElement, inputElement, config) => {
   const errorElement = formElement.querySelector(`#error-${inputElement.id}`);

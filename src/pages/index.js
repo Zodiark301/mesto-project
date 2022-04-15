@@ -1,9 +1,9 @@
 import '../pages/index.css';
 
 import Card from '../components/Card.js';
-import {editProfileButton, newCardButton, cardListSelector} from '../utils/constants.js';
-import {validationConfig } from '../components/validate.js';
-import { descriptionElement, descriptionInput} from '../components/modal.js';
+import { editProfileButton, newCardButton, cardListSelector } from '../utils/constants.js';
+import { validationConfig } from '../components/validate.js';
+import { descriptionElement, descriptionInput } from '../components/modal.js';
 import API from '../components/API.js';
 import Section from '../components/Section';
 import PopupWithImage from '../components/PopupWithImage';
@@ -19,9 +19,9 @@ const api = new API({
   }
 });
 
-const formAvatarValidity = new FormValidator (validationConfig, '.popup_avatar');
+const formAvatarValidity = new FormValidator(validationConfig, '.popup_avatar');
 const formProfileValidity = new FormValidator(validationConfig, '.popup_profile');
-const formCardValidity = new FormValidator (validationConfig, '.popup_card');
+const formCardValidity = new FormValidator(validationConfig, '.popup_card');
 const formsToValidate = [formAvatarValidity, formProfileValidity, formCardValidity];
 formsToValidate.forEach((form) => {
   form.enableValidation();
@@ -47,7 +47,7 @@ const popupWithAvatar = new PopupWithForm('.popup_avatar', {
   }
 }, {
   resetValidation: (input) => {
-    resetValidation(input, formAvatarValidity, document.querySelector('.popup_avatar'));
+    resetValidation1(input, formAvatarValidity, document.querySelector('.popup_avatar'));
   }
 })
 popupWithAvatar.setEventListeners();
@@ -64,8 +64,8 @@ const profilePopup = new PopupWithForm('.popup_profile', {
       .finally(() => profilePopup.setSubmitButtonText('Сохранить'));
   }
 }, {
-  resetValidation: () => {
-    console.log('reset validation');
+  resetValidation: (input) => {
+    resetValidation1(input, formProfileValidity, document.querySelector('.popup_profile'));
   }
 })
 profilePopup.setEventListeners();
@@ -84,15 +84,15 @@ const cardAddPopup = new PopupWithForm('.popup_card', {
       })
   }
 }, {
-  resetValidation: () => {
-    console.log('reset validation');
+  resetValidation: (input) => {
+    resetValidation1(input, formCardValidity, document.querySelector('.popup_card'));
   }
 });
 cardAddPopup.setEventListeners();
 
 editProfileButton.addEventListener('click', function () {
   profilePopup.open();
-  profilePopup.setInputValues(userInfo.getUserInfo());  
+  profilePopup.setInputValues(userInfo.getUserInfo());
   descriptionInput.value = descriptionElement.textContent;
   formProfileValidity.enableButton();
 });
@@ -121,6 +121,11 @@ const avatarButton = document.querySelector('.profile__avatar-button');
 avatarButton.addEventListener('click', () => {
   popupWithAvatar.open();
   formAvatarValidity.disableButton();
+})
+
+const resetValidation1 = ((input, formClass, form) => {
+  const errorElement = form.querySelector(`#error-${input.id}`);
+  formClass.hideInputError(input, errorElement);
 })
 
 const newCard = new Section({
