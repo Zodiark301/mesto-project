@@ -1,14 +1,15 @@
 import '../pages/index.css';
+
 import Card from '../components/Card.js';
-import { editProfileButton, newCardButton, cardListSelector } from '../utils/constants.js';
-import { enableValidation, validationConfig } from '../components/validate.js';
-import { clearCardForm, openPopup } from '../utils/utils.js';
-import { editProfilePopup, descriptionElement, nameInput, descriptionInput, nameElement, newCardPopup, profileAvatar, popupAvatar, nameProfileImage } from '../components/modal.js';
+import {editProfileButton, newCardButton, cardListSelector} from '../utils/constants.js';
+import {validationConfig } from '../components/validate.js';
+import { descriptionElement, descriptionInput} from '../components/modal.js';
 import API from '../components/API.js';
 import Section from '../components/Section';
 import PopupWithImage from '../components/PopupWithImage';
 import PopupWithForm from '../components/PopupWithForm';
-import UserInfo from '../components/UserInfo';
+import UserInfo from '../components/userInfo';
+import FormValidator from '../components/FormValidator';
 
 const api = new API({
   url: 'https://nomoreparties.co/v1/plus-cohort7',
@@ -17,6 +18,14 @@ const api = new API({
     'Content-Type': 'application/json'
   }
 });
+
+const formAvatarValidity = new FormValidator (validationConfig, '.popup_avatar');
+const formProfileValidity = new FormValidator(validationConfig, '.popup_profile');
+const formCardValidity = new FormValidator (validationConfig, '.popup_card');
+const formsToValidate = [formAvatarValidity, formProfileValidity, formCardValidity];
+formsToValidate.forEach((form) => {
+  form.enableValidation();
+})
 
 const userInfo = new UserInfo('.profile');
 
@@ -83,9 +92,9 @@ cardAddPopup.setEventListeners();
 
 editProfileButton.addEventListener('click', function () {
   profilePopup.open();
-  profilePopup.setInputValues(userInfo.getUserInfo());
+  profilePopup.setInputValues(userInfo.getUserInfo());  
   descriptionInput.value = descriptionElement.textContent;
-  // formProfileValidity.enableButton();
+  formProfileValidity.enableButton();
 });
 
 newCardButton.addEventListener('click', function () {
@@ -111,7 +120,7 @@ function handleLike(card, id, cardToCreate) {
 const avatarButton = document.querySelector('.profile__avatar-button');
 avatarButton.addEventListener('click', () => {
   popupWithAvatar.open();
-  // formAvatarValidity.disableButton();
+  formAvatarValidity.disableButton();
 })
 
 const newCard = new Section({
