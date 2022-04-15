@@ -1,9 +1,7 @@
 import '../pages/index.css';
 
 import Card from '../components/Card.js';
-import { editProfileButton, newCardButton, cardListSelector } from '../utils/constants.js';
-import { validationConfig } from '../components/validate.js';
-import { descriptionElement, descriptionInput } from '../components/modal.js';
+import { editProfileButton, newCardButton, descriptionInput, descriptionElement} from '../utils/constants.js';
 import API from '../components/API.js';
 import Section from '../components/Section';
 import PopupWithImage from '../components/PopupWithImage';
@@ -18,6 +16,15 @@ const api = new API({
     'Content-Type': 'application/json'
   }
 });
+
+const validationConfig = {
+  formSelector: '.popup__form', // Ищем по классу все формы
+  inputSelector: '.popup__input', // Ищем все поля по классу
+  inputInvalidClass: 'popup__input_invalid',
+  errorClass: 'popup__error_visible',
+  buttonSelector: '.popup__button',
+  buttonDisabledClass: 'popup__button_disabled',
+};
 
 const formAvatarValidity = new FormValidator(validationConfig, '.popup_avatar');
 const formProfileValidity = new FormValidator(validationConfig, '.popup_profile');
@@ -144,7 +151,6 @@ const newCard = new Section({
   }
 });
 
-
 Promise.all([api.gettingProfileAPI(), api.gettingCardsAPI()])
   .then(([user, cards]) => {
     userInfo.setUserInfo(user);
@@ -156,6 +162,3 @@ Promise.all([api.gettingProfileAPI(), api.gettingCardsAPI()])
   .catch(err => {
     console.log(err);
   });
-
-
-

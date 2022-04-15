@@ -5,4 +5,5 @@ export const previewTitle = previewPopup.querySelector('.popup__caption');
 export const previewImg = previewPopup.querySelector('.popup__image');
 export const cardTemplate = document.getElementById('cards');
 export const cardListSelector = '.elements__list';
-
+export const descriptionInput = document.querySelector('.popup__input_type_description');
+export const descriptionElement = document.querySelector('.profile__description');
