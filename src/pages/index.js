@@ -1,16 +1,18 @@
 import '../pages/index.css';
 import Card from '../components/Card.js';
-import {editProfileButton, newCardButton, cardListSelector} from '../utils/constants.js';
+import { editProfileButton, newCardButton, cardListSelector } from '../utils/constants.js';
 import { enableValidation, validationConfig } from '../components/validate.js';
 import { clearCardForm, openPopup } from '../utils/utils.js';
 import { editProfilePopup, descriptionElement, nameInput, descriptionInput, nameElement, newCardPopup, profileAvatar, popupAvatar, nameProfileImage } from '../components/modal.js';
 import API from '../components/API.js';
 import Section from '../components/Section';
+import PopupWithImage from '../components/PopupWithImage';
+import PopupWithForm from '../components/PopupWithForm';
 import UserInfo from '../components/UserInfo';
 
-const api = new API ({
-  url:'https://nomoreparties.co/v1/plus-cohort7',
-  headers : {
+const api = new API({
+  url: 'https://nomoreparties.co/v1/plus-cohort7',
+  headers: {
     authorization: 'ea769cc4-10ce-4fe4-88ef-99f1e88db45d',
     'Content-Type': 'application/json'
   }
@@ -18,32 +20,94 @@ const api = new API ({
 
 const userInfo = new UserInfo('.profile');
 
+const popupWithImage = new PopupWithImage('.popup_image');
+popupWithImage.setEventListeners();
+
+const popupWithAvatar = new PopupWithForm('.popup_avatar', {
+  handleSubmit: (data) => {
+    popupWithAvatar.setSubmitButtonText('Сохранение...');
+    api.createAvatar(data.link)
+      .then((data) => {
+        userInfo.setUserAvatar(data);
+        popupWithAvatar.close();
+      })
+      .catch(err => console.log(err))
+      .finally(() => {
+        popupWithAvatar.setSubmitButtonText('Сохранить');
+      })
+  }
+}, {
+  resetValidation: (input) => {
+    resetValidation(input, formAvatarValidity, document.querySelector('.popup_avatar'));
+  }
+})
+popupWithAvatar.setEventListeners();
+
+const profilePopup = new PopupWithForm('.popup_profile', {
+  handleSubmit: (data) => {
+    profilePopup.setSubmitButtonText('Сохранение...');
+    api.changeProfileAPI(data)
+      .then((data) => {
+        userInfo.setUserInfo(data);
+        profilePopup.close();
+      })
+      .catch(err => console.log(err))
+      .finally(() => profilePopup.setSubmitButtonText('Сохранить'));
+  }
+}, {
+  resetValidation: () => {
+    console.log('reset validation');
+  }
+})
+profilePopup.setEventListeners();
+
+const cardAddPopup = new PopupWithForm('.popup_card', {
+  handleSubmit: (data) => {
+    cardAddPopup.setSubmitButtonText('Создание...');
+    api.createCardAPI(data)
+      .then((data) => {
+        newCard.renderItem(data, data.owner._id);
+        cardAddPopup.close();
+      })
+      .catch(err => console.log(err))
+      .finally(() => {
+        cardAddPopup.setSubmitButtonText('Создать')
+      })
+  }
+}, {
+  resetValidation: () => {
+    console.log('reset validation');
+  }
+});
+cardAddPopup.setEventListeners();
+
 editProfileButton.addEventListener('click', function () {
-  openPopup(editProfilePopup);
-  nameInput.value = nameElement.textContent;
+  profilePopup.open();
+  profilePopup.setInputValues(userInfo.getUserInfo());
   descriptionInput.value = descriptionElement.textContent;
+  formProfileValidity.enableButton();
 });
 
 newCardButton.addEventListener('click', function () {
-  clearCardForm();
-  openPopup(newCardPopup);
+  cardAddPopup.open();
 });
 
-profileAvatar.addEventListener('click', function () {
-  clearCardForm();
-  openPopup(popupAvatar);
-});
+const avatarButton = document.querySelector('.profile__avatar-button');
+avatarButton.addEventListener('click', () => {
+  popupWithAvatar.open();
+  formAvatarValidity.disableButton();
+})
 
-const newCard = new Section ({
+const newCard = new Section({
   renderer: (item, userId) => {
-    const cardToCreate = new Card (item, userId, {
-      handleCardClick : (name, link) => {popupWithImage.open(name, link)}
+    const cardToCreate = new Card(item, userId, {
+      handleCardClick: (name, link) => { popupWithImage.open(name, link) }
     }, {
-      handleLike: (card, id) => {handleLike(card, id, cardToCreate)}
+      handleLike: (card, id) => { handleLike(card, id, cardToCreate) }
     }, {
       handleDelete: (id) => {
         api.deleteCard(id)
-        .catch(err => console.log(err));
+          .catch(err => console.log(err));
       }
     });
     return cardToCreate._generate();
