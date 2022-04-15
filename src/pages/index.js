@@ -26,7 +26,7 @@ popupWithImage.setEventListeners();
 const popupWithAvatar = new PopupWithForm('.popup_avatar', {
   handleSubmit: (data) => {
     popupWithAvatar.setSubmitButtonText('Сохранение...');
-    api.createAvatar(data.link)
+    api.createAvatarAPI(data.link)
       .then((data) => {
         userInfo.setUserAvatar(data);
         popupWithAvatar.close();
@@ -85,7 +85,7 @@ editProfileButton.addEventListener('click', function () {
   profilePopup.open();
   profilePopup.setInputValues(userInfo.getUserInfo());
   descriptionInput.value = descriptionElement.textContent;
-  formProfileValidity.enableButton();
+  // formProfileValidity.enableButton();
 });
 
 newCardButton.addEventListener('click', function () {
@@ -95,7 +95,7 @@ newCardButton.addEventListener('click', function () {
 const avatarButton = document.querySelector('.profile__avatar-button');
 avatarButton.addEventListener('click', () => {
   popupWithAvatar.open();
-  formAvatarValidity.disableButton();
+  // formAvatarValidity.disableButton();
 })
 
 const newCard = new Section({

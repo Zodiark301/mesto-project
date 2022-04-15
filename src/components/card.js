@@ -33,13 +33,13 @@ import { cardTemplate } from "../utils/constants.js";
     } else {
       this._element.dataset.isLiked = 'false';
     }
-  }  
+  }
+  
   deleteLike(res) {
     this._cardLikeEl.classList.remove('elements__like_active');
     this._cardLikeNumberEl.textContent = res.likes.length;
     this._element.dataset.isLiked = 'false';
 }
-
 putLike(res) {
     this._cardLikeEl.classList.add('elements__like_active');   
     this._cardLikeNumberEl.textContent = res.likes.length;

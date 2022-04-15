@@ -37,13 +37,13 @@ export default class API {
     .then(res => this._parseResponse(res))
   };
 
-  createCardAPI  (data) {    
+  createCardAPI  (data) {       
     return fetch(`${this._config.url}/cards`, {
       method: 'POST',
       headers: this._config.headers,
       body: JSON.stringify(data)
     })
-    .then(res => this._parseResponse(res))
+    .then(res => this._parseResponse(res))    
   };
 
  deleteCardAPI  (id) {
