@@ -13,14 +13,22 @@
 
 ## Технологии:
 
-* Flexbox
-* Grid Layout
-* Positioning Elements
-* Анимации и трансформации на CSS
-* BEM Methodology
-* Файловая структура (Nested BEM)
-* Git
+* HTML
+* CSS
+* CSS анимация для плавного открытия модальных окон
+* Методология BEM Nested
+* JavaScript
+* Babel
+* Модули
+* Валидация форм
+* Webpack
+* ООП
 
-## Посмотреть проект:
+## Командная работа (участники)
 
-[Перейти в проект "MESTO"](https://zodiark301.github.io/mesto-project/index.html)
+Влад Бегунов (https://github.com/Shiker2032)
+Станислав Умецкий (https://github.com/Zodiark301)
+
+## Проект:
+
+[Перейти в проект](https://zodiark301.github.io/mesto-project/index.html)
