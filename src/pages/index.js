@@ -92,6 +92,22 @@ newCardButton.addEventListener('click', function () {
   cardAddPopup.open();
 });
 
+function handleLike(card, id, cardToCreate) {
+  if (card.dataset.isLiked === 'true') {
+    api.deleteLikeAPI(id)
+      .then((res) => {
+        cardToCreate.deleteLike(res);
+      })
+      .catch(err => console.log(err));
+  } else {
+    api.putLikeAPI(id)
+      .then((res) => {
+        cardToCreate.putLike(res);
+      })
+      .catch(err => console.log(err));
+  }
+}
+
 const avatarButton = document.querySelector('.profile__avatar-button');
 avatarButton.addEventListener('click', () => {
   popupWithAvatar.open();
@@ -106,7 +122,7 @@ const newCard = new Section({
       handleLike: (card, id) => { handleLike(card, id, cardToCreate) }
     }, {
       handleDelete: (id) => {
-        api.deleteCard(id)
+        api.deleteCardAPI(id)
           .catch(err => console.log(err));
       }
     });
