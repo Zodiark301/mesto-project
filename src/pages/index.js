@@ -35,7 +35,7 @@ formsToValidate.forEach((form) => {
   form.enableValidation();
 })
 
-const userInfo = new UserInfo('.profile');
+const userInfo = new UserInfo('.profile', '.profile__avatar', '.profile__name', '.profile__description');
 
 const popupWithImage = new PopupWithImage('.popup_image');
 popupWithImage.setEventListeners();
