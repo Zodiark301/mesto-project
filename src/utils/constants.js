@@ -7,3 +7,11 @@ export const cardTemplate = document.getElementById('cards');
 export const cardListSelector = '.elements__list';
 export const descriptionInput = document.querySelector('.popup__input_type_description');
 export const descriptionElement = document.querySelector('.profile__description');
+export const validationConfig = {
+  formSelector: '.popup__form', // Ищем по классу все формы
+  inputSelector: '.popup__input', // Ищем все поля по классу
+  inputInvalidClass: 'popup__input_invalid',
+  errorClass: 'popup__error_visible',
+  buttonSelector: '.popup__button',
+  buttonDisabledClass: 'popup__button_disabled',
+};
