@@ -64,11 +64,10 @@ export default class Card {
     };
     const newCardElement = this._element;
     const cardTitleElement = newCardElement.querySelector('.elements__header');
-    const cardImageElement = newCardElement.querySelector('.elements__image');
 
     cardTitleElement.textContent = this._name;
-    cardImageElement.alt = this._name;
-    cardImageElement.src = this._link;
+    this._cardImageElement.alt = this._name;
+    this._cardImageElement.src = this._link;
     newCardElement.dataset.id = this._id;
     this._element.querySelector('.elements__like-numbers').textContent = this._likes.length;
     return this._element
