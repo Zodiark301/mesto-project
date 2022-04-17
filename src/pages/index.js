@@ -1,13 +1,14 @@
 import '../pages/index.css';
 
 import Card from '../components/Card.js';
-import { editProfileButton, newCardButton, descriptionInput, descriptionElement} from '../utils/constants.js';
+import { editProfileButton, newCardButton, descriptionInput, descriptionElement } from '../utils/constants.js';
 import API from '../components/API.js';
 import Section from '../components/Section';
 import PopupWithImage from '../components/PopupWithImage';
 import PopupWithForm from '../components/PopupWithForm';
 import UserInfo from '../components/userInfo';
 import FormValidator from '../components/FormValidator';
+
 
 const api = new API({
   url: 'https://nomoreparties.co/v1/plus-cohort7',
