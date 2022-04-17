@@ -27,7 +27,7 @@ export default class Card {
   }
   _checkLike() {
     if (this._likes.some(likedUser => likedUser._id === this._userId)) {
-      this._element.querySelector('.elements__like').classList.add('elements__like_active');
+      this._cardLikeEl.classList.add('elements__like_active');
       this._element.dataset.isLiked = 'true';
     } else {
       this._element.dataset.isLiked = 'false';
