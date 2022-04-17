@@ -98,7 +98,7 @@ const newCard = new Section({
           }).catch(err => console.log(err));
         }
       });
-      return cardToCreate._generate();
+      return cardToCreate.generate();
     }
   });
 

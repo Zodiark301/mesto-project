@@ -49,7 +49,7 @@ export default class Card {
     return cardTemplate.cloneNode(true).content.querySelector('.elements__card');
   }
 
-  _generate() {
+  generate() {
     this._element = this._getElement();
     this._cardImageElement = this._element.querySelector('.elements__image');
     this._cardLikeEl = this._element.querySelector('.elements__like');
