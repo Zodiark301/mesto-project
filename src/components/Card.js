@@ -13,7 +13,6 @@ export default class Card {
     this._handleLike = handleLike;
     this._handleDelete = handleDelete;
   }
-  //ffff
 
   _setEventLisener() {
     this._cardImageElement.addEventListener('click', () => {
@@ -24,7 +23,6 @@ export default class Card {
     })
     this._cardDeleteEl.addEventListener('click', () => {
       this._handleDelete(this._id);
-      this._element.remove();
     })
   }
   _checkLike() {

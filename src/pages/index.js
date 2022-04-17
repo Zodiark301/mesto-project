@@ -145,6 +145,11 @@ const newCard = new Section({
     }, {
       handleDelete: (id) => {
         api.deleteCardAPI(id)
+          .then(() => {
+            document.querySelector(`.elements__card[data-id="${id}"]`).remove();
+          })
+
+
           .catch(err => console.log(err));
       }
     });
