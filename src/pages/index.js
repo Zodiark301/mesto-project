@@ -92,7 +92,6 @@ cardAddPopup.setEventListeners();
 editProfileButton.addEventListener('click', function () {
   profilePopup.open();
   profilePopup.setInputValues(userInfo.getUserInfo());
-  descriptionInput.value = descriptionElement.textContent;
   formProfileValidity.enableButton();
 });
 
