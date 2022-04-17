@@ -69,7 +69,7 @@ export default class Card {
     this._cardImageElement.alt = this._name;
     this._cardImageElement.src = this._link;
     newCardElement.dataset.id = this._id;
-    this._element.querySelector('.elements__like-numbers').textContent = this._likes.length;
+    this._cardLikeNumberEl.textContent = this._likes.length;
     return this._element
   }
 }
