@@ -9,7 +9,6 @@ import PopupWithForm from '../components/PopupWithForm';
 import UserInfo from '../components/userInfo';
 import FormValidator from '../components/FormValidator';
 
-
 const api = new API({
   url: 'https://nomoreparties.co/v1/plus-cohort7',
   headers: {
@@ -18,13 +17,20 @@ const api = new API({
   }
 });
 
-const formAvatarValidity = new FormValidator(validationConfig, '.popup_avatar');
-const formProfileValidity = new FormValidator(validationConfig, '.popup_profile');
-const formCardValidity = new FormValidator(validationConfig, '.popup_card');
-const formsToValidate = [formAvatarValidity, formProfileValidity, formCardValidity];
-formsToValidate.forEach((form) => {
-  form.enableValidation();
-})
+const formValidators = {}
+// Включение валидации
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement)
+// получаем данные из атрибута `name` у формы
+    const formName = formElement.getAttribute('name')
+   // вот тут в объект записываем под именем формы
+    formValidators[formName] = validator;
+   validator.enableValidation();
+  });
+};
+enableValidation(validationConfig);
 
 const userInfo = new UserInfo('.profile', '.profile__avatar', '.profile__name', '.profile__description');
 
@@ -44,10 +50,6 @@ const popupWithAvatar = new PopupWithForm('.popup_avatar', {
         popupWithAvatar.setSubmitButtonText('Сохранить');
       })
   }
-}, {
-  resetValidation: (input) => {
-    resetValidation1(input, formAvatarValidity, document.querySelector('.popup_avatar'));
-  }
 })
 popupWithAvatar.setEventListeners();
 
@@ -61,10 +63,6 @@ const profilePopup = new PopupWithForm('.popup_profile', {
       })
       .catch(err => console.log(err))
       .finally(() => profilePopup.setSubmitButtonText('Сохранить'));
-  }
-}, {
-  resetValidation: (input) => {
-    resetValidation1(input, formProfileValidity, document.querySelector('.popup_profile'));
   }
 })
 profilePopup.setEventListeners();
@@ -81,23 +79,26 @@ const cardAddPopup = new PopupWithForm('.popup_card', {
       .finally(() => {
         cardAddPopup.setSubmitButtonText('Создать')
       })
-  }
-}, {
-  resetValidation: (input) => {
-    resetValidation1(input, formCardValidity, document.querySelector('.popup_card'));
-  }
+    }
 });
 cardAddPopup.setEventListeners();
 
 editProfileButton.addEventListener('click', function () {
   profilePopup.open();
   profilePopup.setInputValues(userInfo.getUserInfo());
-  formProfileValidity.enableButton();
+  formValidators[profilePopup._formEl.getAttribute('name')].resetValidation();
 });
 
 newCardButton.addEventListener('click', function () {
   cardAddPopup.open();
+  formValidators[cardAddPopup._formEl.getAttribute('name')].resetValidation();
 });
+
+const avatarButton = document.querySelector('.profile__avatar-button');
+avatarButton.addEventListener('click', () => {
+  popupWithAvatar.open();
+  formValidators[popupWithAvatar._formEl.getAttribute('name')].resetValidation();
+})
 
 function handleLike(card, id, cardToCreate) {
   if (card.dataset.isLiked === 'true') {
@@ -115,21 +116,12 @@ function handleLike(card, id, cardToCreate) {
   }
 }
 
-const avatarButton = document.querySelector('.profile__avatar-button');
-avatarButton.addEventListener('click', () => {
-  popupWithAvatar.open();
-  formAvatarValidity.disableButton();
-})
-
-const resetValidation1 = ((input, formClass, form) => {
-  const errorElement = form.querySelector(`#error-${input.id}`);
-  formClass.hideInputError(input, errorElement);
-})
 
 const newCard = new Section({
   renderer: (item, userId) => {
     const cardToCreate = new Card(item, userId, {
-      handleCardClick: (name, link) => { popupWithImage.open(name, link) }
+      handleCardClick: (name, link) => {
+         popupWithImage.open(name, link)}
     }, {
       handleLike: (card, id) => { handleLike(card, id, cardToCreate) }
     }, {
@@ -137,10 +129,7 @@ const newCard = new Section({
         api.deleteCardAPI(id)
           .then(() => {
             document.querySelector(`.elements__card[data-id="${id}"]`).remove();
-          })
-
-
-          .catch(err => console.log(err));
+          }).catch(err => console.log(err));
       }
     });
     return cardToCreate._generate();

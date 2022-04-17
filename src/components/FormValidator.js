@@ -1,8 +1,8 @@
 export default class FormValidator {
-  constructor(config, selector) {
+  constructor(config, formElement) {
     this._config = config;
-    this._form = document.querySelector(selector);
-    this._inputList = Array.from(
+    this._form = formElement;
+    this._inputList = Array.from (
       this._form.querySelectorAll(this._config.inputSelector));
     this._buttonEl = this._form.querySelector(this._config.buttonSelector);
   }
@@ -54,18 +54,24 @@ export default class FormValidator {
     }
   };
 
-  _setEventListeners = (formElement) => {
+  _setEventListeners = () => {
     this._inputList.forEach(inputElement => {
       inputElement.addEventListener('input', () => {
         this._checkinputValidity(inputElement);
         this._toggleButtonState();
       });
     });
-    this._toggleButtonState();
-
   };
   enableValidation() {
     this._setEventListeners();
+  }
+
+   resetValidation = () => {
+     this._toggleButtonState();
+     this._inputList.forEach((inputEl) => {
+       const errorElement = this._form.querySelector(`#error-${inputEl.id}`);
+       this.hideInputError(inputEl, errorElement);
+     })
   }
 }
 
