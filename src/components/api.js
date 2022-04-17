@@ -1,30 +1,31 @@
 export default class API {
-  constructor (config) {
+  constructor(config) {
     this._config = config;
   }
-  
-  _parseResponse (res)  {
+
+  //fff
+  _parseResponse(res) {
     if (res.ok) {
       return res.json();
     }
     return Promise.reject(new Error(`Произошла ошибка со статус - кодом ${res.status}`));
   };
 
-  gettingProfileAPI  () {
+  gettingProfileAPI() {
     return fetch(`${this._config.url}/users/me`, {
       headers: this._config.headers
     })
       .then(res => this._parseResponse(res))
   };
 
-  gettingCardsAPI () {
-    return fetch (`${this._config.url}/cards`, {
+  gettingCardsAPI() {
+    return fetch(`${this._config.url}/cards`, {
       headers: this._config.headers
     })
-    .then (res=> this._parseResponse(res))
+      .then(res => this._parseResponse(res))
   };
 
-  createProfileAPI  (name, about)  {
+  createProfileAPI(name, about) {
     const info = {
       name: name,
       about: about
@@ -34,44 +35,44 @@ export default class API {
       headers: this._config.headers,
       body: JSON.stringify(info)
     })
-    .then(res => this._parseResponse(res))
+      .then(res => this._parseResponse(res))
   };
 
-  createCardAPI  (data) {       
+  createCardAPI(data) {
     return fetch(`${this._config.url}/cards`, {
       method: 'POST',
       headers: this._config.headers,
       body: JSON.stringify(data)
     })
-    .then(res => this._parseResponse(res))    
+      .then(res => this._parseResponse(res))
   };
 
- deleteCardAPI  (id) {
+  deleteCardAPI(id) {
     return fetch(`${this._config.url}/cards/${id}`, {
       method: 'DELETE',
       headers: this._config.headers,
     })
-    .then(res => this._parseResponse(res))
+      .then(res => this._parseResponse(res))
   };
 
-  deleteLikeAPI  (id) {
+  deleteLikeAPI(id) {
     return fetch(`${this._config.url}/cards/likes/${id}`, {
       method: 'DELETE',
       headers: this._config.headers,
     })
-    .then(res => this._parseResponse(res))
+      .then(res => this._parseResponse(res))
   };
 
-  putLikeAPI  (id) {
+  putLikeAPI(id) {
     return fetch(`${this._config.url}/cards/likes/${id}`, {
       method: 'PUT',
       headers: this._config.headers,
     })
-    .then(res => this._parseResponse(res))
+      .then(res => this._parseResponse(res))
   };
 
-   changeAvatarAPI ({avatar}) {
-    return fetch(`${config.urlProfile}/avatar` , {
+  changeAvatarAPI({ avatar }) {
+    return fetch(`${config.urlProfile}/avatar`, {
       method: 'PATCH',
       headers: {
         authorization: config.token,
@@ -81,19 +82,19 @@ export default class API {
         avatar: `${avatar}`
       })
     })
-    .then (res => parseResponse (res));
+      .then(res => parseResponse(res));
   }
 
-  changeProfileAPI  (data)  {
+  changeProfileAPI(data) {
     return fetch(`${this._config.url}/users/me`, {
       method: 'PATCH',
       headers: this._config.headers,
       body: JSON.stringify(data)
     })
-    .then(res => this._parseResponse(res))
+      .then(res => this._parseResponse(res))
   };
 
-  createAvatarAPI  (image) {
+  createAvatarAPI(image) {
     const infoAvatar = {
       avatar: image,
     }
@@ -102,6 +103,6 @@ export default class API {
       headers: this._config.headers,
       body: JSON.stringify(infoAvatar)
     })
-    .then(res => this._parseResponse(res))
-  };  
+      .then(res => this._parseResponse(res))
+  };
 }
