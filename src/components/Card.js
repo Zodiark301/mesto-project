@@ -60,7 +60,7 @@ export default class Card {
     this._checkLike();
 
     if (this._userId !== this._owner._id) {
-      this._element.querySelector('.elements__remove-button').remove();
+      this._cardDeleteEl.remove();
     };
     const newCardElement = this._element;
     const cardTitleElement = newCardElement.querySelector('.elements__header');
