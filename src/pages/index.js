@@ -98,10 +98,10 @@ const newCard = new Section({
             document.querySelector(`.elements__card[data-id="${id}"]`).remove();
           }).catch(err => console.log(err));
       }
-    }, cardListSelector);
+    }, 'adad',);
     return cardToCreate.generate();
   }
-});
+}, cardListSelector);
 
 function handleLike(card, id, cardToCreate) {
   if (card.dataset.isLiked === 'true') {
